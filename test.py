@@ -54,6 +54,7 @@ def shouldAdd(field, fields):
 def parseFields(lines, special_fields):
     fields = []
     mydict = []
+    N = 0
 
     field_dict = {}
     for line in lines:
@@ -72,7 +73,8 @@ def parseFields(lines, special_fields):
                 item[fields[i]] = row[i]
                 field_dict[fields[i]].append(float(row[i]))
             mydict.append(item)
-    return field_dict, fields, mydict
+            N = N + 1
+    return field_dict, fields, mydict, N
 
 def loadFile(fields_in, fields_out):
 
@@ -81,10 +83,9 @@ def loadFile(fields_in, fields_out):
     with open(filename, 'r') as file:
         lines = file.readlines()
 
-    field_dict, fields, mydict = parseFields(lines, fields_in)
+    field_dict, fields, mydict, N = parseFields(lines, fields_in)
     writeFile(filename + ".preProcess.csv", fields, mydict)
 
-    n = 0
     field_in_dict = {}
     field_in = []
     field_out_dict = {}
@@ -94,17 +95,15 @@ def loadFile(fields_in, fields_out):
 
         if shouldAdd(fields[i], fields_in):
             field_in_dict[fields[i]] = normalizeMinMaxScaling(field_dict[fields[i]])
-            n = len(field_in_dict[fields[i]])
             field_in.append(fields[i])
         if shouldAdd(fields[i], fields_out):
             field_out_dict[fields[i]] = normalizeMinMaxScaling(field_dict[fields[i]])
-            n = len(field_out_dict[fields[i]])
             field_out.append(fields[i])
 
     X = []
     Y = []
     i = 0
-    while i < n:
+    while i < N:
         item = []
         for field in field_in:
             item.append(field_in_dict[field][i])
@@ -118,7 +117,7 @@ def loadFile(fields_in, fields_out):
         i = i + 1
 
     mydict = []
-    for i in range(n):
+    for i in range(N):
         item = {}
         for j in range(len(fields)):
             item[fields[j]] = field_dict[fields[j]][i]
@@ -126,7 +125,7 @@ def loadFile(fields_in, fields_out):
     writeFile(filename + ".postProcess.csv", fields, mydict)
 
     mydict = []
-    for i in range(n):
+    for i in range(N):
         item = {}
         for j in range(len(field_in)):
             item[field_in[j]] = field_in_dict[field_in[j]][i]
@@ -134,7 +133,7 @@ def loadFile(fields_in, fields_out):
     writeFile(filename + ".X.csv", field_in, mydict)
 
     mydict = []
-    for i in range(n):
+    for i in range(N):
         item = {}
         for j in range(len(field_out)):
             item[field_out[j]] = field_out_dict[field_out[j]][i]
