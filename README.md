@@ -24,6 +24,8 @@ The model predicts the pitch with about 73% certainty.
 
 I talk about the project [here](https://youtu.be/T3Ltw3H-FRw)
 
+You can load the keras file using this [link](https://netron.app/)
+
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing.
 
