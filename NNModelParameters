@@ -1,14 +1,14 @@
 James Folk
 DATA 527 – Predictive Modeling
-Assignment 4
+Project 2
 DEADLINE: May 6, 2024
 Spring 2024
 
 Learning Rate: 0.001
-Number of Iterations: 2000
-Final Coorelation Coefficent: 0.449060499
+Number of Iterations: 500
+Final Coorelation Coefficent: 0.7293365435980965
 Structure:
     3 input nodes
-    3 hidden layers with 20 nodes each
+    5 hidden layers with 40 nodes each
     1 output node
 
