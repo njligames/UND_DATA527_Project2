@@ -4,7 +4,7 @@
 > 
 > DATA 527 – Predictive Modeling
 > 
-> Assignment 4
+> Project 2
 > 
 > DEADLINE: May 6, 2024
 > 
@@ -19,7 +19,10 @@
  - [Contributing](#contributing)
 
 ## About
-Could you write about 1-2 paragraphs describing the purpose of your project?
+This inputs the file `input_fl_12477` to predict the pitch.
+The model predicts the pitch with about 73% certainty.
+
+I talk about the project [here](https://youtu.be/T3Ltw3H-FRw)
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing.
@@ -52,7 +55,7 @@ A step-by-step series of examples that tell you how to get a development env run
 1. Run
 
     ```sh
-    python3 FFNNImplementation.py
+    python3 test.py
     ```
 
 ## Contributing

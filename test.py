@@ -227,10 +227,6 @@ def kerasModel(inX, inY):
     )
     model.save("mymodel.keras")
 
-    # inputTens = tf.constant([X[0]], dtype=tf.float32)
-    # val = model.predict(inputTens, verbose=1)[0][0]
-    # print(val)
-
 class TestCalculations(unittest.TestCase):
 
     def test_drawloss(self:writeFile):
@@ -245,11 +241,11 @@ class TestCalculations(unittest.TestCase):
     0.0051, 0.0052, 0.0057, 0.0050]
 
         print(mseArray)
-        plt.plot(mseArray)                                                                                                                                                         
-        plt.title("Mean Square Errors")                                                                                                                                            
-        plt.xlabel("Error Iteration Number")                                                                                                                                       
-        plt.ylabel("Error Values")                                                                                                                                                 
-        plt.savefig('MSE.pdf', dpi=150)                                                                                                                                    
+        plt.plot(mseArray)
+        plt.title("Mean Square Errors")
+        plt.xlabel("Error Iteration Number")
+        plt.ylabel("Error Values")
+        plt.savefig('MSE.pdf', dpi=150)
         plt.show()
 
     def test_load(self):
@@ -257,30 +253,18 @@ class TestCalculations(unittest.TestCase):
         fields_out = ["pitch"]
         ind, dep, X, Y = loadFile(fields_in, fields_out)
 
-        # kerasModel(X, Y)
+        kerasModel(X, Y)
 
-        # model = tf.keras.models.load_model("mymodel.keras")
+        model = tf.keras.models.load_model("mymodel.keras")
 
-        # predictions = []
-        # for i in range(len(X)):
-        #     inputTens = tf.constant([X[i]], dtype=tf.float32)
-        #     prediction = model.predict(inputTens, verbose=2)[0][0]
-        #     predictions.append(prediction)
+        predictions = []
+        for i in range(len(X)):
+            inputTens = tf.constant([X[i]], dtype=tf.float32)
+            prediction = model.predict(inputTens, verbose=2)[0][0]
+            predictions.append(prediction)
 
-        # r_squared = calculate_r_squared(Y, predictions)
-        # print(f"R Squared: {r_squared}")
-
-
-
-
-
-
-        # truth_table = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-        # expected_output = np.array([[0, 1, 1, 0]]).T
-        # nn = NeuralNetwork(truth_table, expected_output)
-
-        # # Train the network
-        # nn.train(epoch=500000)
+        r_squared = calculate_r_squared(Y, predictions)
+        print(f"R Squared: {r_squared}")
 
 
 if __name__ == '__main__':

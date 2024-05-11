@@ -5,7 +5,7 @@
 # Spring 2024
 
 def main():
-    pass
+    print("The code is in the test.py file.")
 
 if __name__=="__main__":
     main()
